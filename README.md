@@ -28,4 +28,5 @@ Download and copy Barcode_Codec.jar in the plugins folder, then restart ImageJ.
 User guide
 ----------
 Encoding : Open a new Text window, write or paste your text then simply use the Barcode_Codec plugin to encode
+
 Decoding : Open an image containing the barcode then use the Barcode_Codec plugin to decode
