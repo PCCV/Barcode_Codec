@@ -1,9 +1,6 @@
-# Barcode_Codec
-plugin for ImageJ to Encode/Decode 1D/2D Barcode
+# Barcode_Codec : plugin for ImageJ to Encode/Decode 1D/2D Barcode
 ===============
 
-
- 
 Côme PASQUALIN - François GANNIER (gannier at univ-tours dot fr) 
 University of Tours (France)
 
