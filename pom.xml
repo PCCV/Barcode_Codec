@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+		http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.scijava</groupId>
+		<artifactId>pom-scijava</artifactId>
+		<version>14.0.0</version>
+		<relativePath />
+	</parent>
+
+	<groupId>fr.univ-tours.pccv</groupId>
+	<artifactId>Barcode_Codec</artifactId>
+	<version>0.4.0-SNAPSHOT</version>
+
+	<name>Barcode Codec</name>
+	<description>ImageJ Plugin to Encode/Decode 1D/2D Barcodes</description>
+	<url>http://pccv.univ-tours.fr/ImageJ/Barcode_Codec/</url>
+	<inceptionYear>2017</inceptionYear>
+	<organization>
+		<name>Université François-Rabelais</name>
+		<url>http://pccv.univ-tours.fr/</url>
+	</organization>
+	<licenses>
+		<license>
+			<name>GNU General Public License (GPL) version 3.0</name>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<id>PCCV</id>
+			<name>GANNIER François / PASQUALIN Côme</name>
+			<roles>
+				<role>lead</role>
+				<role>developer</role>
+				<role>debugger</role>
+				<role>reviewer</role>
+				<role>support</role>
+				<role>maintainer</role>
+			</roles>
+		</developer>
+	</developers>
+	<contributors>
+		<contributor>
+			<name>None</name>
+		</contributor>
+	</contributors>
+
+	<mailingLists>
+		<mailingList>
+			<name>ImageJ Forum</name>
+			<archive>http://forum.imagej.net/</archive>
+		</mailingList>
+	</mailingLists>
+
+	<scm>
+		<connection>scm:git:git://github.com/PCCV/Barcode_Codec</connection>
+		<developerConnection>scm:git:git@github.com:PCCV/Barcode_Codec</developerConnection>
+		<tag>HEAD</tag>
+		<url>https://github.com/PCCV/Barcode_Codec</url>
+	</scm>
+	<issueManagement>
+		<system>GitHub Issues</system>
+		<url>https://github.com/PCCV/Barcode_Codec/issues</url>
+	</issueManagement>
+	<ciManagement>
+		<system>None</system>
+	</ciManagement>
+
+	<properties>
+		<package-name>fr.univ-tours.pccv</package-name>
+		<main-class>Barcode_Codec</main-class>
+		<license.licenseName>gpl_v3</license.licenseName>
+		<license.copyrightOwners>Université François-Rabelais</license.copyrightOwners>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>net.imagej</groupId>
+			<artifactId>ij</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.google.zxing</groupId>
+			<artifactId>core</artifactId>
+			<version>3.2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.zxing</groupId>
+			<artifactId>javase</artifactId>
+			<version>3.2.1</version>
+		</dependency>
+	</dependencies>
+</project>
