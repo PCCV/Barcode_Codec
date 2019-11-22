@@ -14,7 +14,7 @@
 //  You should have received a copy of the GNU General Public License
 //  along with Barcode_Codec.  If not, see <http://www.gnu.org/licenses/>.
 //
-// Copyright 2017 Francois GANNIER, Come PASQUALIN
+// Copyright 2016-2017 Francois GANNIER, Come PASQUALIN
 /////////////////////////////////////////////////////////////////*/
 
 import com.google.zxing.*;
@@ -36,17 +36,29 @@ import java.awt.image.BufferedImage;
 
 import java.util.EnumMap;
 import java.util.Map; 
+import java.awt.*;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.FileOutputStream;
+import java.util.*;
+// import java.net.URL;
+import java.nio.ByteBuffer;
 
 // ver 0.1 : initial release
 // ver 0.2 : show detected barcode 
 // ver 0.3 : add decoding on selection
+// ver 0.4 : add toolset
+// ver 1.0 : DOI release
 
 // @SuppressWarnings("all")
 @SuppressWarnings("deprecation")
 
 public class Barcode_Codec implements PlugIn  {
 	static final boolean debug = false; //true; //false;
-	String sVer="1D/2D barcode Codec ver. 0.3";
+	String sVer="1D/2D barcode Codec ver. 0.4";
 	String sCop="Copyright \u00A9 2017 F.GANNIER - C.PASQUALIN";
 
 	String getEncoder(String test) {
@@ -71,12 +83,13 @@ public class Barcode_Codec implements PlugIn  {
 		choice0[n++] = "UPC_A";
 			// choice0[n++] = "UPC_E";
 			// choice0[n++] = "UPC_EAN_EXTENSION";
-		
-		if (test != "")
+	
+		if (test != null) {
 			for (int i=0; i<nChoice; i++)
-				if (test.equalsIgnoreCase(choice0[i]))
+				if (test.replace(" ","").equals(choice0[i]))
 					return choice0[i];
-		else IJ.log("Error : " + test +" is a bad option");
+			IJ.log("Error :" + test +". is a bad option");
+		}
 		dfltChoice = Prefs.get("Barcode.Encoder","QR_CODE");
 		GenericDialog gd = new GenericDialog(sVer);
 		gd.addChoice("BarCode Format", choice0, dfltChoice); // save last used format
@@ -220,6 +233,23 @@ public class Barcode_Codec implements PlugIn  {
 	}
 
 	public void run(String arg)	{
+		String path = IJ.getDirectory("macros")+"toolsets/";
+		String name = "Barcode.ijm";
+		File f = new File(path+name);
+		if(!f.exists()) {				// && f.isFile())
+			InputStream link = (getClass().getResourceAsStream(name));
+			try {
+				byte[] buffer = new byte[link.available()];
+				link.read(buffer);
+				OutputStream outStream = new FileOutputStream(f);
+				outStream.write(buffer);				
+			} catch (IOException e) {
+				IJ.log("error");
+			}
+			IJ.run("Install...", "install=["+path+name+"]");
+		}				
+		
+		String options = Macro.getOptions();
 		TextWindow win = null;
 		Editor winE = null;
 		String text2encode = "";
@@ -240,8 +270,7 @@ public class Barcode_Codec implements PlugIn  {
 			if (text2encode == "")
 				return;
 			if (debug) IJ.log(text2encode);
-			String Encoder = getEncoder(arg);
-				
+			String Encoder = getEncoder(options);
 			if (debug) IJ.log(Encoder);
 			if (Encoder == null)
 				return;
