@@ -1,4 +1,4 @@
-include ../Makefile.os
+include Makefile.os
 
 JC = javac
 JFLAGS = -g -deprecation -Xlint:unchecked -source 1.6
